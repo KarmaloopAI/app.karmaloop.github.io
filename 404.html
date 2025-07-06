@@ -5,19 +5,15 @@
   <title>Kai Agent - AI Voice Platform</title>
   <meta name="description" content="Redirecting to Kai Agent application...">
   <script>
-    // GitHub Pages SPA redirect
-    // Store the current path and redirect to index.html with path info
-    const path = window.location.pathname.slice(1)
-    const query = window.location.search
-    const hash = window.location.hash
-    
-    if (path) {
-      // Store the intended path in sessionStorage
-      sessionStorage.setItem('redirect-path', path + query + hash)
-    }
-    
-    // Redirect to the main app
-    window.location.replace('/' + query + hash)
+    // GitHub Pages SPA redirect (rafgraph pattern)
+    (function() {
+      var l = window.location;
+      var pathname = l.pathname.replace(/\/$/, ''); // remove trailing slash
+      var search = l.search ? l.search : '';
+      var hash = l.hash ? l.hash : '';
+      var redirect = '/index.html?/' + pathname.slice(1) + (search ? '&' + search.slice(1) : '') + hash;
+      window.location.replace(redirect);
+    })();
   </script>
 </head>
 <body>
